@@ -1,20 +1,21 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Payment · Stride Shoes</title><link rel="stylesheet" href="/shop.css"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Payment · Stride Shoes</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="/shop.css"></head>
 <body>
 <script src="/shop.js"></script>
 <script>header()</script>
-<main>
+<main class="narrow">
+  <ol class="steps" aria-label="Checkout steps"><li>Shipping</li><li class="now" aria-current="step">Payment</li><li>Done</li></ol>
   <h1>Payment</h1>
-  <div id="summary"></div>
-  <form id="f" novalidate>
-    <label for="card">Card number</label><input id="card" inputmode="numeric" autocomplete="cc-number">
+  <div id="summary" class="panel summary"></div>
+  <form id="f" class="panel" novalidate>
+    <label for="card" style="margin-top:0">Card number</label><input id="card" inputmode="numeric" autocomplete="cc-number">
     <label for="exp">Expiry (MM/YY)</label><input id="exp" autocomplete="cc-exp">
     <label for="cvc">CVC</label><input id="cvc" inputmode="numeric" autocomplete="cc-csc">
     <p class="error" id="err" role="alert" hidden>Please check your card details.</p>
-    <button type="submit">Place order</button>
+    <button type="submit" class="wide">Place order</button>
   </form>
-  <p class="muted">Test mode: use card 4242 4242 4242 4242.</p>
+  <p class="muted" style="margin-top:14px">Test mode: use card 4242 4242 4242 4242.</p>
 </main>
 <script>
   const sub = cart.get().reduce((n, it) => n + PRODUCTS[it.id].price, 0);

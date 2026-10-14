@@ -1,7 +1,18 @@
 {
   "outputDirectory": "public",
-  "cleanUrls": true,
   "rewrites": [
+    {
+      "source": "/signup",
+      "destination": "/signup.html"
+    },
+    {
+      "source": "/welcome",
+      "destination": "/welcome.html"
+    },
+    {
+      "source": "/cart",
+      "destination": "/cart.html"
+    },
     {
       "source": "/checkout/address",
       "destination": "/address.html"

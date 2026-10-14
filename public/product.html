@@ -1,21 +1,28 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Product · Stride Shoes</title><link rel="stylesheet" href="/shop.css"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Product · Stride Shoes</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="/shop.css"></head>
 <body>
 <script src="/shop.js"></script>
 <script>header()</script>
 <main>
-  <h1 id="name"></h1>
-  <p class="price" id="price"></p>
-  <form id="f">
-    <label for="size">Size</label>
-    <select id="size" required>
-      <option value="">Choose a size</option>
-      <option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
-    </select>
-    <p class="error" id="err" role="alert" hidden>Please choose a size.</p>
-    <button type="submit">Add to cart</button>
-  </form>
+  <div class="product">
+    <div id="tile"></div>
+    <div class="buy">
+      <h1 id="name"></h1>
+      <p class="price" id="price"></p>
+      <p class="desc" id="desc"></p>
+      <form id="f">
+        <label for="size">Size</label>
+        <select id="size" required>
+          <option value="">Choose a size</option>
+          <option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
+        </select>
+        <p class="error" id="err" role="alert" hidden>Please choose a size.</p>
+        <button type="submit" class="wide">Add to cart</button>
+      </form>
+      <ul class="perks"><li>Free returns within 30 days</li><li>Ships in 1 to 2 business days</li></ul>
+    </div>
+  </div>
 </main>
 <script>
   const id = location.pathname.split("/").pop();
@@ -23,6 +30,8 @@
   document.title = p.name + " · Stride Shoes";
   document.getElementById("name").textContent = p.name;
   document.getElementById("price").textContent = money(p.price);
+  document.getElementById("desc").textContent = p.blurb;
+  document.getElementById("tile").dataset.shoe = PRODUCTS[id] ? id : "trail";
   document.getElementById("f").addEventListener("submit", (e) => {
     e.preventDefault();
     const size = document.getElementById("size").value;

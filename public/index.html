@@ -1,16 +1,18 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Stride Shoes</title><link rel="stylesheet" href="/shop.css"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Stride Shoes</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="/shop.css"></head>
 <body>
 <script src="/shop.js"></script>
 <script>header()</script>
 <main>
-  <div class="banner">Free returns within 30 days.</div>
-  <h1>Shoes for every step</h1>
+  <div class="hero">
+    <h1>Shoes for every step</h1>
+    <p>Three pairs, made well. Trail, road and everyday, all under $90.</p>
+  </div>
   <div class="grid">
-    <div class="card"><div class="swatch" style="background:#8fb39b"></div><h2>Ridge Trail Runner</h2><p class="price">$45.00</p><a class="button" href="/product/trail">View</a></div>
-    <div class="card"><div class="swatch" style="background:#c9a66b"></div><h2>Tempo Road Shoe</h2><p class="price">$89.00</p><a class="button" href="/product/road">View</a></div>
-    <div class="card"><div class="swatch" style="background:#9aa7c7"></div><h2>Everyday Walker</h2><p class="price">$39.00</p><a class="button" href="/product/walk">View</a></div>
+    <article class="card"><div data-shoe="trail"></div><div class="meta"><h2>Ridge Trail Runner</h2><p class="price">$45.00</p></div><p class="sub">Trail running</p><a class="button quiet" href="/product/trail">View</a></article>
+    <article class="card"><div data-shoe="road"></div><div class="meta"><h2>Tempo Road Shoe</h2><p class="price">$89.00</p></div><p class="sub">Road running</p><a class="button quiet" href="/product/road">View</a></article>
+    <article class="card"><div data-shoe="walk"></div><div class="meta"><h2>Everyday Walker</h2><p class="price">$39.00</p></div><p class="sub">Walking</p><a class="button quiet" href="/product/walk">View</a></article>
   </div>
 </main>
 </body>

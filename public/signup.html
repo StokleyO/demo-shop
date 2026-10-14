@@ -1,18 +1,19 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sign up · Stride Shoes</title><link rel="stylesheet" href="/shop.css"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sign up · Stride Shoes</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="/shop.css"></head>
 <body>
 <script src="/shop.js"></script>
 <script>header()</script>
-<main>
+<main class="narrow">
   <h1>Create your account</h1>
-  <form id="f" novalidate>
-    <label for="email">Email</label><input id="email" type="email" autocomplete="email">
+  <p class="lede">Track orders and check out faster next time.</p>
+  <form id="f" class="panel" novalidate>
+    <label for="email" style="margin-top:0">Email</label><input id="email" type="email" autocomplete="email">
     <label for="pw">Password</label><input id="pw" type="password" autocomplete="new-password">
-    <p class="muted">At least 8 characters.</p>
+    <p class="muted" style="margin:6px 0 0">At least 8 characters.</p>
     <label for="pw2">Confirm password</label><input id="pw2" type="password" autocomplete="new-password">
     <p class="error" id="err" role="alert" hidden></p>
-    <button type="submit">Create account</button>
+    <button type="submit" class="wide">Create account</button>
   </form>
 </main>
 <script>
