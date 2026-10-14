@@ -1,0 +1,22 @@
+{
+  "outputDirectory": "public",
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/checkout/address",
+      "destination": "/address.html"
+    },
+    {
+      "source": "/checkout/payment",
+      "destination": "/payment.html"
+    },
+    {
+      "source": "/order/confirmation",
+      "destination": "/confirmation.html"
+    },
+    {
+      "source": "/product/:id",
+      "destination": "/product.html"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Payment · Stride Shoes</title><link rel="stylesheet" href="/shop.css"></head>
+<body>
+<script src="/shop.js"></script>
+<script>header()</script>
+<main>
+  <h1>Payment</h1>
+  <div id="summary"></div>
+  <form id="f" novalidate>
+    <label for="card">Card number</label><input id="card" inputmode="numeric" autocomplete="cc-number">
+    <label for="exp">Expiry (MM/YY)</label><input id="exp" autocomplete="cc-exp">
+    <label for="cvc">CVC</label><input id="cvc" inputmode="numeric" autocomplete="cc-csc">
+    <p class="error" id="err" role="alert" hidden>Please check your card details.</p>
+    <button type="submit">Place order</button>
+  </form>
+  <p class="muted">Test mode: use card 4242 4242 4242 4242.</p>
+</main>
+<script>
+  const sub = cart.get().reduce((n, it) => n + PRODUCTS[it.id].price, 0);
+  document.getElementById("summary").innerHTML =
+    `<div class="row"><span>Subtotal</span><span>${money(sub)}</span></div>` +
+    `<div class="row"><span>Shipping</span><span>Free</span></div>` +
+    `<div class="row"><strong>Total</strong><strong>${money(sub)}</strong></div>`;
+  document.getElementById("f").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const card = document.getElementById("card").value.replace(/\s/g, "");
+    if (card.length < 15 || !document.getElementById("exp").value || document.getElementById("cvc").value.length < 3) {
+      document.getElementById("err").hidden = false; return;
+    }
+    cart.clear();
+    location.href = "/order/confirmation";
+  });
+</script>
+</body>
+</html>

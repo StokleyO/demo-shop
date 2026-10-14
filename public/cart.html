@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Cart · Stride Shoes</title><link rel="stylesheet" href="/shop.css"></head>
+<body>
+<script src="/shop.js"></script>
+<script>header()</script>
+<main>
+  <h1>Your cart</h1>
+  <div id="items"></div>
+  <p id="empty" hidden>Your cart is empty. <a href="/">Keep shopping</a></p>
+  <a class="button" id="checkout" href="/checkout/address">Checkout</a>
+</main>
+<script>
+  const items = cart.get();
+  let total = 0;
+  for (const it of items) {
+    const p = PRODUCTS[it.id];
+    total += p.price;
+    document.getElementById("items").insertAdjacentHTML("beforeend", `<div class="row"><span>${p.name} · size ${it.size}</span><span>${money(p.price)}</span></div>`);
+  }
+  if (items.length) document.getElementById("items").insertAdjacentHTML("beforeend", `<div class="row"><strong>Subtotal</strong><strong>${money(total)}</strong></div>`);
+  else { document.getElementById("empty").hidden = false; document.getElementById("checkout").hidden = true; }
+</script>
+</body>
+</html>

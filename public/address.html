@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Shipping address · Stride Shoes</title><link rel="stylesheet" href="/shop.css"></head>
+<body>
+<script src="/shop.js"></script>
+<script>header()</script>
+<main>
+  <h1>Shipping address</h1>
+  <form id="f" novalidate>
+    <label for="name">Full name</label><input id="name" autocomplete="name">
+    <label for="street">Street address</label><input id="street" autocomplete="street-address">
+    <label for="city">City</label><input id="city">
+    <label for="state">State</label>
+    <select id="state"><option value="">Choose a state</option><option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option><option>CO</option><option>CT</option><option>DE</option><option>DC</option><option>FL</option><option>GA</option><option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option><option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option><option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option><option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option><option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option><option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option><option>SD</option><option>TN</option><option>TX</option><option>UT</option><option>VT</option><option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option></select>
+    <label for="zip">ZIP code</label><input id="zip" inputmode="numeric" autocomplete="postal-code">
+    <p class="error" id="err" role="alert" hidden></p>
+    <button type="submit">Continue to payment</button>
+  </form>
+</main>
+<script>
+  document.getElementById("f").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const v = (id) => document.getElementById(id).value.trim();
+    const err = document.getElementById("err");
+    if (!v("name") || !v("street") || !v("city") || !v("state")) { err.textContent = "Please fill in every field."; err.hidden = false; return; }
+    if (!/^\d{5}$/.test(v("zip"))) { err.textContent = "Please enter a valid ZIP code."; err.hidden = false; document.getElementById("zip").setAttribute("aria-invalid", "true"); return; }
+    location.href = "/checkout/payment";
+  });
+</script>
+</body>
+</html>

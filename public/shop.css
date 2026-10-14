@@ -1,0 +1,18 @@
+* { box-sizing: border-box; }
+body { margin: 0; font: 16px/1.5 system-ui, -apple-system, sans-serif; color: #1d1d1f; background: #fafaf7; }
+header { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: #1f3a2e; color: #fff; }
+header a { color: #fff; text-decoration: none; margin-left: 16px; }
+header .logo { font-weight: 700; font-size: 20px; margin-left: 0; }
+main { max-width: 860px; margin: 0 auto; padding: 24px 20px 60px; }
+h1 { font-size: 26px; margin: 8px 0 16px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+.card { background: #fff; border: 1px solid #e3e3dc; border-radius: 10px; padding: 16px; }
+.card .swatch { height: 120px; border-radius: 8px; margin-bottom: 12px; }
+.price { font-weight: 600; }
+label { display: block; font-weight: 600; margin: 14px 0 4px; }
+input, select { width: 100%; padding: 10px; border: 1px solid #bdbdb3; border-radius: 6px; font-size: 16px; }
+button, .button { display: inline-block; margin-top: 18px; padding: 12px 20px; border: 0; border-radius: 8px; background: #2f6b4f; color: #fff; font-size: 16px; cursor: pointer; text-decoration: none; }
+.error { color: #b3261e; font-weight: 600; margin-top: 6px; }
+.row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #eee; }
+.muted { color: #66665e; font-size: 14px; }
+.banner { background: #eef5f0; border: 1px solid #cfe3d6; padding: 10px 14px; border-radius: 8px; margin-bottom: 18px; }

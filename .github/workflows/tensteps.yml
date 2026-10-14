@@ -1,0 +1,52 @@
+# Tensteps: AI personas test every Vercel preview and comment on the pull request.
+#
+# Copy this file to .github/workflows/tensteps.yml. Then, in the repo's
+# Settings > Secrets and variables > Actions, add:
+#   ANTHROPIC_API_KEY                 required
+#   VERCEL_AUTOMATION_BYPASS_SECRET   only if your previews use Vercel Deployment Protection
+#
+# What to test lives in tensteps.yml at the repo root (studies, and how many
+# personas a pull request gets under triggers.pull_request).
+name: Tensteps
+
+on:
+  deployment_status:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  tensteps:
+    # Vercel reports pending, then success. Only finished deploys are tested;
+    # Tensteps also skips production deploys and commits that are no longer the PR's latest.
+    if: github.event.deployment_status.state == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.deployment.sha }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run Tensteps
+        # Reports on the PR but never blocks a merge.
+        continue-on-error: true
+        # Add --model claude-opus-5-5 to spend less per run.
+        run: npx --yes tensteps@beta run --max-cost 10
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Upload the report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tensteps-report
+          path: .tensteps/runs/
+          if-no-files-found: ignore
+          retention-days: 30

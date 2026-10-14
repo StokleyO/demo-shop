@@ -1,0 +1,23 @@
+# What Tensteps tests on every pull request's preview deploy.
+version: 1
+
+studies:
+  - name: checkout
+    objective: "Buy any pair of shoes under $50 and get it shipped to your home address"
+    success:
+      url_matches: "/order/confirmation"
+    max_steps: 30
+    guardrails:
+      payment: test_card
+    matrix:
+      device: [desktop_chrome, android_low_end]
+      network: [wifi, slow_3g]
+
+follow_up:
+  - key: frustration
+    type: rating
+    scale: 5
+    prompt: "How frustrating was that? (1 = not at all, 5 = very)"
+
+triggers:
+  pull_request: { sessions: 6 }

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sign up · Stride Shoes</title><link rel="stylesheet" href="/shop.css"></head>
+<body>
+<script src="/shop.js"></script>
+<script>header()</script>
+<main>
+  <h1>Create your account</h1>
+  <form id="f" novalidate>
+    <label for="email">Email</label><input id="email" type="email" autocomplete="email">
+    <label for="pw">Password</label><input id="pw" type="password" autocomplete="new-password">
+    <p class="muted">At least 8 characters.</p>
+    <label for="pw2">Confirm password</label><input id="pw2" type="password" autocomplete="new-password">
+    <p class="error" id="err" role="alert" hidden></p>
+    <button type="submit">Create account</button>
+  </form>
+</main>
+<script>
+  document.getElementById("f").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const v = (id) => document.getElementById(id).value;
+    const err = document.getElementById("err");
+    if (!/^\S+@\S+\.\S+$/.test(v("email"))) { err.textContent = "Please enter a valid email."; err.hidden = false; return; }
+    if (v("pw").length < 8) { err.textContent = "Password must be at least 8 characters."; err.hidden = false; return; }
+    if (v("pw") !== v("pw2")) { err.textContent = "Passwords don't match."; err.hidden = false; return; }
+    location.href = "/welcome";
+  });
+</script>
+</body>
+</html>
