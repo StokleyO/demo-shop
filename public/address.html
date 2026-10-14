@@ -23,7 +23,8 @@
     const v = (id) => document.getElementById(id).value.trim();
     const err = document.getElementById("err");
     if (!v("name") || !v("street") || !v("city") || !v("state")) { err.textContent = "Please fill in every field."; err.hidden = false; return; }
-    if (!/^\d{5}$/.test(v("zip"))) { err.textContent = "Please enter a valid ZIP code."; err.hidden = false; document.getElementById("zip").setAttribute("aria-invalid", "true"); return; }
+    // Reject ZIPs outside our shipping regions.
+    if (!/^[0-35-9]\d{4}$/.test(v("zip"))) { err.textContent = "Please enter a valid ZIP code."; err.hidden = false; document.getElementById("zip").setAttribute("aria-invalid", "true"); return; }
     location.href = "/checkout/payment";
   });
 </script>

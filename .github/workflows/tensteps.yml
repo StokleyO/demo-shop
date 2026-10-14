@@ -10,23 +10,31 @@
 name: Tensteps
 
 on:
+  # A preview finished deploying.
   deployment_status:
+  # A PR was opened after its branch's preview was already built.
+  pull_request:
+    types: [opened, reopened, ready_for_review]
 
 permissions:
   contents: read
   pull-requests: write
+  deployments: read
 
 jobs:
   tensteps:
     # Vercel reports pending, then success. Only finished deploys are tested;
     # Tensteps also skips production deploys and commits that are no longer the PR's latest.
-    if: github.event.deployment_status.state == 'success'
+    if: github.event_name == 'pull_request' || github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    # One run per commit at a time; a commit that was already tested is skipped.
+    concurrency:
+      group: tensteps-${{ github.event.deployment.sha || github.event.pull_request.head.sha }}
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.deployment.sha }}
+          ref: ${{ github.event.deployment.sha || github.event.pull_request.head.sha }}
 
       - uses: actions/setup-node@v4
         with:
